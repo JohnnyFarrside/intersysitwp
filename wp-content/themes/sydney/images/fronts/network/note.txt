@@ -1,0 +1,9 @@
+the "workflow-menu.png" is from pixabay.com, free images so it should be fine
+
+#############################################################################
+//=> Color of hexagones:
+blue : rgb(94,141,187)
+orange : rgb(233,82,35)
+red : rgb(212,33,36)
+green : rgb(148,178,150)
+
