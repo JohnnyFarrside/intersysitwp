@@ -79,7 +79,10 @@ $table_prefix  = 'intersysit_';
  */
 define('WP_DEBUG', false);
 define('WP_ALLOW_REPAIR', false);
-define('COOKIE_DOMAIN', $_SERVER['HTTP_HOST'] );
+define('ADMIN_COOKIE_PATH', '/');
+define('COOKIE_DOMAIN', '');
+define('COOKIEPATH', '');
+define('SITECOOKIEPATH', ''); 
 
 /* That's all, stop editing! Happy blogging. */
 
