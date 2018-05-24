@@ -18,24 +18,34 @@
  * @package WordPress
  */
 
+$connectstr_dbhost = '';
+$connectstr_dbname = '';
+$connectstr_dbusername = '';
+$connectstr_dbpassword = '';
+
+foreach ($_SERVER as $key => $value) {
+    if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
+        continue;
+    }
+    
+    $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+}
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'intersysit2');
+define('DB_NAME', $connectstr_dbname);
 
 /** MySQL database username */
-define('DB_USER', 'b826aa0f8b5714');
+define('DB_USER', $connectstr_dbusername);
 
 /** MySQL database password */
-define('DB_PASSWORD', '3d72394d');
+define('DB_PASSWORD', $connectstr_dbpassword);
 
-/** MySQL hostname */
-define('DB_HOST', 'localhost:3306');
-
-/** Database Charset to use in creating database tables. */
-define('DB_CHARSET', '');
-
-/** The Database Collate type. Don't change this if in doubt. */
-define('DB_COLLATE', '');
+/** MySQL hostname : this contains the port number in this format host:port . Port is not 3306 when using this feature*/
+define('DB_HOST', $connectstr_dbhost);
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -79,10 +89,6 @@ $table_prefix  = 'intersysit_';
  */
 define('WP_DEBUG', false);
 define('WP_ALLOW_REPAIR', false);
-define('ADMIN_COOKIE_PATH', '/');
-define('COOKIE_DOMAIN', '');
-define('COOKIEPATH', '');
-define('SITECOOKIEPATH', ''); 
 
 /* That's all, stop editing! Happy blogging. */
 
